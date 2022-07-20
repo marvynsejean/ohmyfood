@@ -1,0 +1,26 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Roboto";
+  text-decoration: none;
+}
+
+html, body {
+  margin: 100%;
+  padding: 100%;
+}
+
+.primary {
+  color: #9356dc;
+}
+
+.secondary {
+  color: #ff79da;
+}
+
+.tertary {
+  color: #99e2d0;
+}
+
+/*# sourceMappingURL=style.css.map */

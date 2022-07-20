@@ -1,0 +1,29 @@
+*
+{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Roboto';
+    text-decoration: none;
+}
+
+$primary: #9356dc;
+$secondary: #ff79da;
+$tertary: #99e2d0;
+
+html, body {
+    margin: 100%;
+    padding: 100%;
+}
+
+.primary {
+    color: $primary;
+}
+
+.secondary {
+    color: $secondary;
+}
+
+.tertary {
+    color: $tertary;
+}
