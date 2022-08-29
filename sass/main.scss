@@ -7,13 +7,37 @@
     text-decoration: none;
 }
 
+// Mise en place de variables
 $primary: #9356dc;
 $secondary: #ff79da;
 $tertary: #99e2d0;
+$breakpoints-map:(
+    tablette: 700px,
+    desktop: 1024px
+);
 
 html, body {
-    margin: 100%;
-    padding: 100%;
+    width: 100%;
+    height: 100%;
+}
+
+// Création de mixin afin de pouvoir faire des répétitions
+@mixin btn {
+    padding: 12px 24px;
+    font-size: 18px;
+    color: #fff;
+    cursor: pointer;
+    transition: 0.25s;
+    box-shadow: 4px 4px 160px black;
+    border-radius: 80px;
+    background: #686868 linear-gradient(0deg, $primary, $secondary);
+    font-weight: 500;
+}
+
+@mixin breakpoints($min-device) {
+    @media screen and (min-width: map-get($breakpoints-map, $min-device)) {
+        @content;
+    }
 }
 
 .primary {
@@ -26,4 +50,317 @@ html, body {
 
 .tertary {
     color: $tertary;
+}
+
+// Mise au point du spinner
+.spinner {
+    display: flex;
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    z-index: 100000;
+    justify-content: center;
+    align-items: center;
+    animation: spinner 1s;
+    animation-delay: 1s;
+    animation-fill-mode: both;
+
+    #spinner_ {
+        transform-origin: center;
+        animation-name: animation;
+        animation-duration: 1.2s;
+        animation-timing-function: cubic-bezier;
+        animation-iteration-count: infinite;
+    }
+
+    @include breakpoints(tablette) {
+        width: 60%;
+        height: 60%;
+        margin-left: 20%;
+        margin-top: 20%;
+    }
+
+    @include breakpoints(desktop) {
+        width: 50%;
+        height: 50%;
+        margin-left: 25%;
+        margin-top: 13%;
+    }
+}
+
+@keyframes animation {
+    0% {
+        stroke-dasharray: 1 98;
+        stroke-dashoffset: -105;
+    }
+    50% {
+        stroke-dasharray: 80 10;
+        stroke-dashoffset: -160;
+    }
+    100% {
+        stroke-dasharray: 1 98;
+        stroke-dashoffset: -300;
+    }
+}
+
+@keyframes spinner {
+    100% {
+        opacity: 0;
+        z-index: -10000;
+    }
+}
+
+header {
+    padding: 16px;
+    box-shadow: 0 0 8px #000;
+    position: relative;
+    z-index: 100;
+
+    .logo {
+        text-align: center;
+        font-family: 'Shrikhand', "cursive";
+    }
+}
+
+// Localisation haut de page
+.location {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #f3f3f3;
+    position: relative;
+    font-size: 20px;
+    padding: 20px;
+
+    .bold-700 {
+        font-weight: 700;
+    }
+    .location__icon {
+        margin: 0 16px 0 0;
+    }
+}
+
+// Info sur la réservation avec mise en place du bouton
+.info {
+    padding: 16px;
+    text-align: center;
+    background: #fafafa;
+
+    .info__sentence {
+        font-weight: 300;
+        margin: 24px 0;
+    }
+    .btn__explore {
+        @include btn;
+        &:hover {
+            opacity: 0.8;
+            box-shadow: 4px 4px 160px black;
+        }
+    }
+}
+
+// Partie tutoriel du site avec les 3 étapes
+.fonctionnement {
+    padding: 32px 16px;
+    
+    .container {
+        ul {
+            padding: 0;
+            margin: 0;
+            list-style: none;
+            counter-reset: ListCount;
+
+            li {
+                &::before {
+                    counter-increment: ListCount 1;
+                    content: counter(ListCount);
+                    width: 24px;
+                    height: 24px;
+                    border-radius: 80px;
+                    background: $primary;
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    color: white;
+                    position: absolute;
+                    left: -10px;
+                }
+
+                padding: 24px;
+                margin: 16px 16px 16px 16px;
+                background: white;
+                border-radius: 20px;
+                display: flex;
+                position: relative;
+                box-shadow: 4px 4px 8px black;
+
+                i {
+                    margin-right: 16px;
+                    color: #7e7e7e;
+                }
+
+                span {
+                    color: black;
+                    font-weight: 400;
+                }
+
+                .fa-store {
+                    color: $primary;
+                }
+            }
+
+            #violet {
+                background: #f5edff;
+            }
+        }
+    }
+}
+// Cartes des restaurants avec les images, les textes et animation des coeurs
+.restaurants {
+    margin: 2%;
+}
+.cards {
+    display: flex;
+    flex-direction: column;
+
+    .card {
+        background: #fff;
+        border-radius: 16px;
+        position: relative;
+        display: block;
+        margin: 8px 0;
+        box-shadow: 5px 5px 8px #00000012;
+
+        img {
+            width: 100%;
+            height: 180px;
+            border-radius: 16px 16px 0 0;
+            box-shadow: none;
+            object-fit: cover;
+        }
+        .card_nouveau {
+            background: #99e1cf;
+            color: #138668;
+            padding: 8px;
+            border-radius: 2px;
+            position: absolute;
+            top: 16px;
+            right: 12px;
+        }
+        .card__footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin: 8px;
+            color: black;
+            padding: 16px;
+            h3 {
+                margin: 0 0 4px;
+            }
+            span {
+                margin: 0;
+            }
+            .card__heart {
+                width: 32px;
+                height: 32px;
+                padding: 0;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                cursor: pointer;
+                position: relative;
+                background: transparent;
+                i {
+                    font-size: 32px;
+                    position: absolute;
+
+                    &:hover {
+                        opacity: 0;
+                    }
+                }
+                .heart__color {
+                    opacity: 0;
+                    &:hover {
+                        opacity: 1;
+                        background: linear-gradient(0deg, $primary, $secondary);
+                        -webkit-background-clip: text;
+                        -webkit-text-fill-color: transparent;
+                    }
+                }
+            }
+        }
+    }
+}
+
+// Footer avec icons et mailto
+footer {
+    padding: 16px;
+    background: #383838;
+    display: flex;
+    flex-direction: column;
+
+    .omf__text {
+        font-family: 'Shrikhand', "cursive";
+        font-size: 18px;
+        margin: 0 0 16px;
+        color: #fff;
+    }
+
+    ul {
+        list-style: none;
+
+    li {
+            display: flex;
+            position: relative;
+            margin: 8px 0;
+
+    a {
+                text-decoration: none;
+                color: white;
+
+    i {
+                    width: 18px;
+                    margin-right: 8px;
+        }
+    }
+    }
+    }
+}
+
+// Partie breakpoints, format tablette et desktop
+.cards {
+    @include breakpoints(tablette) {
+        .card {
+            width: 48%;
+        }
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        column-gap: 4%;
+        row-gap: 4%;
+    }
+}
+
+.fonctionnement {
+    .container {
+        @include breakpoints(desktop) {
+            width: 100%;
+            h2 {
+                margin: 10px;
+            }
+            ul {
+                display: flex;
+
+                li {
+                    flex: 1;
+                    margin: 0 0 0 80px;
+
+                    &first-child {
+                        margin-top: 0;
+                        margin-left: 14px;
+                    }
+                }
+            }
+        }
+    }
 }

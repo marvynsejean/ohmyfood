@@ -1,0 +1,288 @@
+@import "main";
+
+$max-display: 4;
+
+// Image du restaurant en background
+.bg__image {
+    max-width: 100%;
+    max-height: 500px;
+    width: 100%;
+    object-fit: cover;
+}
+
+// Carte globale du menu, avec header et l'animation sur le coeur
+.menu {
+    margin-top: -60px;
+    border-radius: 32px 32px 0 0;
+    background: #f6f6f6;
+    z-index: 1000;
+    position: relative;
+
+    &_header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 16px 32px 0 16px;
+
+        h2 {
+            font-family: Shrikhand, "cursive";
+            margin: 18px 0;
+        }
+
+        .card__heart {
+            width: 32px;
+            height: 32px;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            position: relative;
+            background: transparent;
+
+            i {
+                font-size: 30px;
+                position: absolute;
+
+                &:hover {
+                    opacity: 0;
+                }
+            }
+
+            .heart__color {
+                opacity: 0;
+
+                &:hover {
+                    opacity: 1;
+                    background: linear-gradient(0deg, $primary, $secondary);
+                    -webkit-background-clip: text;
+                    -webkit-text-fill-color: transparent;
+                    transition: all 0.5s;
+                }
+            }
+        }
+    }
+
+    // Menu détaillé, avec les plats et les animations d'affichage
+    .menu_cards {
+        display: grid;
+
+        .plats {
+            max-width: 100%;
+            overflow: hidden;
+            padding: 0 16px;
+
+            h3 {
+                text-transform: uppercase;
+                position: relative;
+                padding-bottom: 8px;
+                font-weight: 400;
+                margin: 18px 0;
+            }
+
+            .menu_item {
+                background: white;
+                border-radius: 13px;
+                padding: 16px;
+                display: flex;
+                box-shadow: 4px 4px 16px black;
+                overflow: hidden;
+                margin: 16px 0;
+                cursor: pointer;
+                max-width: 100%;
+
+                &-text {
+                    flex: 1;
+                    overflow: hidden;
+
+                    h4 {
+                        overflow: hidden;
+                        white-space: nowrap;
+                        text-overflow: ellipsis;
+                    }
+
+                    p {
+                        margin: 0;
+                        white-space: nowrap;
+                        text-overflow: ellipsis;
+                        overflow: hidden;
+                    }
+                }
+
+                &-price {
+                    font-weight: 700;
+                    display: flex;
+                    justify-content: flex-end;
+                    align-items: flex-end;
+                    padding-left: 8px;
+                    margin-right: 32px;
+                }
+
+                &-validation {
+                    background: $tertary;
+                    margin: -16px -80px -16px -16px;
+                    width: 64px;
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    transition-duration: 0.5s;
+                }
+
+                &-icon {
+                    width: 28px;
+                    height: 28px;
+                    background: white;
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    border-radius: 100px;
+                    transform: rotate(360deg);
+                    transition-duration: 0.5s;
+
+                    i {
+                        color: $tertary;
+                    }
+                }
+
+                &:hover {
+                    .menu_item {
+                        &-validation {
+                            margin-right: -16px;
+                        }
+
+                        &-icon {
+                            transform: rotate(0);
+                        }
+                    }
+                }
+            }
+
+                .delay-0 {
+                    opacity: 0;
+                    animation: delais 1s;
+                    animation-delay: 0.25s;
+                    animation-fill-mode: forwards;
+                }
+
+                .delay-1 {
+                    opacity: 0;
+                    animation: delais 1s;
+                    animation-delay: 0.50s;
+                    animation-fill-mode: forwards;
+                }
+
+                .delay-2 {
+                    opacity: 0;
+                    animation: delais 1s;
+                    animation-delay: 0.75s;
+                    animation-fill-mode: forwards;
+                }
+
+                .delay-3 {
+                    opacity: 0;
+                    animation: delais 1s;
+                    animation-delay: 1s;
+                    animation-fill-mode: forwards;
+                }
+
+                .delay-4 {
+                    opacity: 0;
+                    animation: delais 1s;
+                    animation-delay: 1.25s;
+                    animation-fill-mode: forwards;
+                }
+
+                .delay-5 {
+                    opacity: 0;
+                    animation: delais 1s;
+                    animation-delay: 1.50s;
+                    animation-fill-mode: forwards;
+                }
+
+                .delay-6 {
+                    opacity: 0;
+                    animation: delais 1s;
+                    animation-delay: 1.75s;
+                    animation-fill-mode: forwards;
+                }
+
+                .delay-7 {
+                    opacity: 0;
+                    animation: delais 1s;
+                    animation-delay: 2s;
+                    animation-fill-mode: forwards;
+                }
+
+                .delay-8 {
+                    opacity: 0;
+                    animation: delais 1s;
+                    animation-delay: 2.25s;
+                    animation-fill-mode: forwards;
+                }
+
+                .delay-9 {
+                    opacity: 0;
+                    animation: delais 1s;
+                    animation-delay: 2.5s;
+                    animation-fill-mode: forwards;
+                }
+
+
+                @keyframes delais {
+                    from {
+                        opacity: 0;
+                    }
+                    to {
+                        opacity: 100;
+                    }
+                }
+
+                @-webkit-keyframes delais {
+                    from {
+                        opacity: 0;
+                    }
+                    to {
+                        opacity: 100;
+                    }
+                }
+
+                @-moz-keyframes delais {
+                    from {
+                        opacity: 0;
+                    }
+                    to {
+                        opacity: 100;
+                    }
+                }
+            // }
+        }
+    }
+
+    // Bouton commander
+    .btn_card {
+        padding: 38px 0;
+        display: flex;
+        justify-content: center;
+        .btn_buy {
+             @include btn;
+            font-weight: 400;
+
+            &:hover {
+                opacity: 0.8;
+                box-shadow: 4px 4px 160px black;
+            }
+        }
+    }
+}
+
+// Breakpoint pour le desktop
+@media screen and (min-width: 1024px) {
+    .menu {
+        .menu_cards {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            column-gap: 1rem;
+        }
+    }
+}
+
